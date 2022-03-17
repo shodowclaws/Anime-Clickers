@@ -1,0 +1,92 @@
+local PC_Parts = {"Ram 8Gb", "256Gb", "1080X RGB", "5 1200", "Silver 500w", "Honeycomb GL", "A30 C", "LC X2 RGB", "Stealth 12 RGB"}
+
+-- Loop!
+while _G.PCMaking1 do
+    for i = 1, #PC_Parts do
+        BuyRemote:FireServer(PC_Parts[i], false, "1")
+        wait(0.1)
+    end
+   
+    PlaceRemote:FireServer("Honeycomb GL")
+    BuildPCRemote:FireServer("finish editing component")
+    wait(0.1)
+   
+    if PcItemsFolder:FindFirstChild("A30 C") then -- Check if plr has item
+        -- Place Motherboard
+        PlacePartRemote:FireServer("Motherboard", PcItemsFolder["A30 C"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break; -- Stop loop (skip the rest of this loop)
+    end
+   
+    if PcItemsFolder:FindFirstChild("Silver 500w") then
+        -- Place PowerSuply??
+        PlacePartRemote:FireServer("PowerSuply", PcItemsFolder["Silver 500w"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+   
+    if PcItemsFolder:FindFirstChild("5 1200") then
+        -- Place CPU
+        PlacePartRemote:FireServer("Cpu", PcItemsFolder["5 1200"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+   
+    if PcItemsFolder:FindFirstChild("Ram 8Gb") then
+        -- Place Ram
+        PlacePartRemote:FireServer("Ram", PcItemsFolder["Ram 8Gb"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+   
+    if PcItemsFolder:FindFirstChild("256Gb") then
+        -- Place Memory
+        PlacePartRemote:FireServer("Memory", PcItemsFolder["256Gb"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+   
+    if PcItemsFolder:FindFirstChild("1080X RGB") then
+        -- Place GPU
+        PlacePartRemote:FireServer("Gpu", PcItemsFolder["1080X RGB"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+    if PcItemsFolder:FindFirstChild("Stealth 12 RGB") then
+        -- Place Fan
+        PlacePartRemote:FireServer("Fan", PcItemsFolder["Stealth 12 RGB"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+    if PcItemsFolder:FindFirstChild("LC X2 RGB") then
+        -- Place Watercooling
+        PlacePartRemote:FireServer("Water", PcItemsFolder["LC X2 RGB"])
+        BuildPCRemote:FireServer("groupPart")
+        wait(0.1)
+    else
+        break;
+    end
+   
+    -- Save PC
+    SaveRemote:FireServer("Farming:)")
+    wait(0.1)
+   
+    -- Sell all PC's in folder (this is due to errors occuring during the pc making process..)
+    for i, PC in ipairs(PCFolder:GetChildren()) do
+        SellRemote:FireServer(PC.Name)
+    end
+end
